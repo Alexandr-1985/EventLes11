@@ -24,12 +24,12 @@ button {
     background-color: orange;
 }
 
-input[type=range] {
+input[type="range"] {
     width: 200px;
     cursor: pointer;
 }
 
-input[type=text] {
+input[type="text"] {
     padding: 5px;
 }
 
@@ -38,7 +38,7 @@ a {
     color: rebeccapurple;
     font-weight: bold;
     font-size: 20px;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 a:hover {
