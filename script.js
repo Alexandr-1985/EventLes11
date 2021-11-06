@@ -1,40 +1,33 @@
 "user strict";
 
-const btn = document.getElementById("btn");
-const inputText = document.getElementById("text").value;
-const square = document.getElementById("square").style.backgroundColor;
-const ebtn = (document.getElementById("e_btn").style.display = "none");
-const range = document.getElementById("range").value;
-const spanRange = document.getElementById("range-span");
-const circle = (document.getElementById("circle").style.width =
-    range.currentTarget.procent);
-document.getElementById("circle").style.height = range.currentTarget.procent;
+/*Работать должно так: ввели в input[type=text] yellow, по нажатию на кнопку значение input[type=text] попадает в свойство style="backgroundColor: yellow" и фон квадрата должен поменяться*/
+document.getElementById("btn").addEventListener("click", function() {
+    document.getElementById("square").style.backgroundColor =
+        document.getElementById("text").value;
+});
 
-const btnClick = function(event) {
-    event.target.value;
-};
+/* В кружке (который внутри квадрата) есть кнопка. Дать ей свойство style="display: none; "*/
+document.getElementById("e_btn").style.display = "none";
 
-const squareColor = function(event) {
-    event.target.classList.squareColor(colorClick);
-};
+/*при каждом изменении положения ползунка значение input[type=range] необходимо заносить в свойства ширины и высоты кружка (который внутри квадрата) (height и width) (в процентах!!) */
+const range = document.getElementById("range");
+const span = document.getElementById("range-span");
+const square = document.getElementById("square");
+const circle = document.getElementById("circle");
 
-let colorSquare = null;
+range.addEventListener("input", function(event) {
+    span.textContent = event.target.value;
+});
 
-const colorClick = function(event) {
-    if (colorSquare) {
-        colorSquare.classList.remove("green");
-        colorSquare.classList.remove("yelow");
-        colorSquare.classList.remove("blue");
-    }
-    colorSquare = event.currentTarget;
-    colorSquare.classList.add(inputText.target.classList());
-};
+document.getElementById("range").addEventListener("input", function() {
+    document.getElementById("circle").style.width = range.value + "%";
+    document.getElementById("circle").style.height = range.value + "%";
+});
 
-const logger = function(event) {
-    spanRange.textContent = event.target.value;
-};
-
-btn.addEventListener("click", btnClick);
-inputText.addEventListener("input", colorClick, true);
-square.addEventListener("input", squareColor, true);
-range.addEventListener("input", logger);
+/*or variant 
+range.addEventListner('inpup', () => {
+    const circleSize = range.value;
+    circle.style.width = circleSize + '%';
+    circle.style.height = circleSize + '%';
+})
+*/
